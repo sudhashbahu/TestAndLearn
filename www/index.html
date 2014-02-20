@@ -32,7 +32,9 @@
                   target = new Image();
                   target.src = "images/Ball.png";
                   xPos = (iW - target.width) / 2;
+                  xVel = 0;
                   yPos = (iH - target.height) / 2;
+                  yVel = 0;
                   watch = navigator.accelerometer.watchAcceleration(success, failure, { frequency: 25 });
                   window.setInterval(Draw, 1000 / 60);
 
@@ -43,8 +45,10 @@
                   cnv.drawImage(target, xPos, yPos);
              }
              function success(accel) {
-                  xPos += -1 * (accel.x * 3);
-                  yPos += (accel.y * 3);
+                  xVel -= (accel.x) * (0.025);
+                  yVel += (accel.y) * (0.025);
+                  xPos += (xVel * 500 * 0.025);
+                  yPos += (yVel * 500 * 0.025);
              }
 
              function failure() {
