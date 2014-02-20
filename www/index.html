@@ -53,8 +53,8 @@
              function success(accel) {
                   xVel -= (accel.x * 0.01667);
                   yVel += (accel.y * 0.01667);
-                  xPos += ((xVel * iW * 0.01667) / 2.0);
-                  yPos += ((yVel * iH * 0.01667) / 2.0);
+                  xPos += ((xVel * 0.01667 * iW) / 2.25);
+                  yPos += ((yVel * 0.01667 * iW) / 2.25);
                   if (xPos <= 0) {
                        xPos = 0;
                        xVel = 0;
