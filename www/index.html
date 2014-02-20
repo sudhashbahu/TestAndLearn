@@ -34,7 +34,7 @@
                   xPos = (iW - target.width) / 2;
                   yPos = (iH - target.height) / 2;
                   watch = navigator.accelerometer.watchAcceleration(success, failure, { frequency: 25 });
-                  window.setTimeout(Draw, 1000 / 60);
+                  window.setInterval(Draw, 1000 / 60);
 
              }
 
