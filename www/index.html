@@ -23,7 +23,7 @@
                 }
         </style>
         <script type="text/javascript" src="phonegap.js"></script>
-        <script>
+        <script type="text/javascript">
              var watch = 0;
 
              window.onload = function() {
@@ -53,7 +53,9 @@
                   document.getElementById("xOut").innerHTML = accel.x;
                   document.getElementById("yOut").innerHTML = accel.y;
                   document.getElementById("zOut").innerHTML = accel.z;
-
+                  xPos += -1 * (accel.x * 1.5);
+                  yPos += (accel.y * 1.5);
+                  cnv.drawImage(target, xPos, yPos); 
              }
 
              function failure() {
