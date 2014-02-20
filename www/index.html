@@ -15,6 +15,12 @@
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript">
              var watch = 0;
+             var iW = 0;
+             var iH = 0;
+             var xPos = 0;
+             var yPos = 0;
+             var xVel = 0;
+             var yVel = 0;
 
              
              window.onload = function() {
@@ -23,8 +29,8 @@
              }
 
              function init() {
-                  var iW = window.innerWidth;
-                  var iH = window.innerHeight;
+                  iW = window.innerWidth;
+                  iH = window.innerHeight;
                   canvas = document.getElementById('myCanvas');
                   cnv = canvas.getContext("2d");
                   cnv.canvas.width = iW;
@@ -48,7 +54,7 @@
                   xVel -= (accel.x) * (0.025);
                   yVel += (accel.y) * (0.025);
                   xPos += ((xVel * iW * 0.025) / 4);
-                  yPos += ((yVel * iY * 0.025) / 4);
+                  yPos += ((yVel * iH * 0.025) / 4);
              }
 
              function failure() {
