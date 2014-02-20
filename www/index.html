@@ -28,7 +28,7 @@
                   canvas = document.getElementById('myCanvas');
                   cnv = canvas.getContext("2d");
                   cnv.canvas.width = iW;
-                  cnv.canvas.height = iH - 40;
+                  cnv.canvas.height = iH;
                   target = new Image();
                   target.src = "images/Ball.png";
                   xPos = (iW - target.width) / 2;
@@ -39,6 +39,7 @@
              }
 
              function Draw() {
+                  cnv.clearRect(0, 0, canvas.width, canvas.height);
                   cnv.drawImage(target, xPos, yPos);
              }
              function success(accel) {
