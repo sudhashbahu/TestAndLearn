@@ -51,10 +51,10 @@
                   cnv.drawImage(target, xPos, yPos);
              }
              function success(accel) {
-                  xVel -= (accel.x) * (0.025);
-                  yVel += (accel.y) * (0.025);
-                  xPos += ((xVel * iW * 0.025) / 4);
-                  yPos += ((yVel * iH * 0.025) / 4);
+                  xVel -= (accel.x) * (0.01667);
+                  yVel += (accel.y) * (0.01667);
+                  xPos += ((xVel * iW * 0.01667) / 4);
+                  yPos += ((yVel * iH * 0.01667) / 4);
              }
 
              function failure() {
