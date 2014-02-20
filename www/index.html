@@ -11,21 +11,12 @@
                 height: 100%;
                 margin: 0px;
             }
-            #footerTable {
-                width: 100%;
-            }
-            footer {
-                position:absolute;
-                bottom:0;
-                width:100%;
-                height:40px;   
-                background:#ccc;
-                }
         </style>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript">
              var watch = 0;
 
+             
              window.onload = function() {
                   //init();
                   document.addEventListener("deviceready", init, false);
@@ -42,20 +33,17 @@
                   target.src = "images/Ball.png";
                   xPos = (iW - target.width) / 2;
                   yPos = (iH - target.height) / 2;
-                  target.onload = function() {
-                       cnv.drawImage(target, xPos, yPos);
-                  }
-                  watch = navigator.accelerometer.watchAcceleration(success,
-          failure, { frequency: 25 });
+                  watch = navigator.accelerometer.watchAcceleration(success, failure, { frequency: 25 });
+                  window.setTimeout(Draw, 1000 / 60);
+
              }
 
+             function Draw() {
+                  cnv.drawImage(target, xPos, yPos);
+             }
              function success(accel) {
-                  document.getElementById("xOut").innerHTML = accel.x;
-                  document.getElementById("yOut").innerHTML = accel.y;
-                  document.getElementById("zOut").innerHTML = accel.z;
-                  xPos += -1 * (accel.x * 1.5);
-                  yPos += (accel.y * 1.5);
-                  cnv.drawImage(target, xPos, yPos); 
+                  xPos += -1 * (accel.x * 3);
+                  yPos += (accel.y * 3);
              }
 
              function failure() {
@@ -66,15 +54,5 @@
     </head>
     <body>
     <canvas id="myCanvas" ></canvas>
-        <footer>
-            <table id="footerTable">
-                <tr>
-                    <td>X: <span id="xOut">0</span></td>
-                    <td>Y: <span id="yOut">0</span></td>
-                    <td>Z: <span id="zOut">0</span></td>
-                </tr>
-            </table>
-        </footer>
-        
     </body>
 </html> 
