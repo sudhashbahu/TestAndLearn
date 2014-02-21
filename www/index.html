@@ -21,6 +21,10 @@
              var yPos = 0;
              var xVel = 0;
              var yVel = 0;
+             var xAcel = 0;
+             var yAcel = 0;
+             var canvas;
+             var cnv;
 
              
              window.onload = function() {
@@ -35,41 +39,58 @@
                   cnv = canvas.getContext("2d");
                   cnv.canvas.width = iW;
                   cnv.canvas.height = iH;
+                  SetCanvasWidth(canvas);
+                  iW = canvas.width;
+                  iH = canvas.height;
                   target = new Image();
                   target.src = "images/Ball.png";
                   xPos = (iW - target.width) / 2;
                   xVel = 0;
                   yPos = (iH - target.height) / 2;
                   yVel = 0;
-                  watch = navigator.accelerometer.watchAcceleration(success, failure, { frequency: (1000/60) });
-                  window.setInterval(Draw, 1000 / 60);
+                  watch = navigator.accelerometer.watchAcceleration(success, failure, { frequency: 40 });
+                  window.setInterval(Draw, 25);
 
              }
 
+             function SetCanvasWidth(canvas) {
+                  if ((canvas.height / 1.5) <= canvas.width)
+                       canvas.width = canvas.height / 1.5;
+                  else
+                       canvas.height = canvas.width * 1.5;
+             }
+             
              function Draw() {
                   cnv.clearRect(0, 0, canvas.width, canvas.height);
                   cnv.drawImage(target, xPos, yPos);
              }
              function success(accel) {
-                  xVel -= (accel.x * 0.01667);
-                  yVel += (accel.y * 0.01667);
-                  xPos += ((xVel * 0.01667 * iW) / 2.25);
-                  yPos += ((yVel * 0.01667 * iW) / 2.25);
+
+                  xVel -= ((accel.x + xAcel) / 2 * 0.04);
+                  xAcel = accel.x;
+                  yVel += ((accel.y + yAcel) / 2 * 0.04);
+                  yAcel = accel.y;
+                  xPos += ((xVel * 0.04 * canvas.width/14));
+                  yPos += ((yVel * 0.04 * canvas.height/21));
                   if (xPos <= 0) {
                        xPos = 0;
                        xVel = 0;
+                       xAcel = 0;
                   }
                   if (yPos <= 0) {
                        yPos = 0;
                        yVel = 0;
+                       yAcel = 0;
                   }
                   if (xPos >= (iW - target.width)) {
                        xPos = iW - target.width;
                        xVel = 0;
+                       xAcel = 0;
                   }
                   if (yPos >= (iH - target.height)) {
                        yPos = iH - target.height;
                        yVel = 0;
+                       yAcel = 0;
                   }
              }
 
