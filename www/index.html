@@ -10,6 +10,7 @@
                 width: 100%;
                 height: 100%;
                 margin: 0px;
+                border: solid;
             }
         </style>
         <script type="text/javascript" src="phonegap.js"></script>
@@ -40,8 +41,9 @@
                   cnv.canvas.width = iW;
                   cnv.canvas.height = iH;
                   SetCanvasWidth(canvas);
-                  iW = canvas.width;
-                  iH = canvas.height;
+                  canvas.scale(240 / cnv.canvas.width, 320 / cnv.canvas.height);
+                  iW = 240;
+                  iH = 320;
                   target = new Image();
                   target.src = "images/Ball.png";
                   xPos = (iW - target.width) / 2;
