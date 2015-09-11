@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -66,10 +66,10 @@
              }
              function success(accel) {
 
-                  xVel -= ((accel.x + xAcel) / 2 * 0.04);
-                  xAcel = accel.x;
-                  yVel += ((accel.y + yAcel) / 2 * 0.04);
-                  yAcel = accel.y;
+                  xVel -= (accel.x  * 0.04);
+                  //xAcel = accel.x;
+                  yVel += (accel.y  * 0.04);
+                  //yAcel = accel.y;
                   xPos += ((xVel * 0.04 * canvas.width/14));
                   yPos += ((yVel * 0.04 * canvas.height/21));
                   if (xPos <= 0) {
