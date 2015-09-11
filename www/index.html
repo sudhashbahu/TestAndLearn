@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, width=320" />
         <style>
             html, body
             {
@@ -41,9 +41,8 @@
                   cnv.canvas.width = iW;
                   cnv.canvas.height = iH;
                   SetCanvasWidth(canvas);
-                  canvas.scale(240.0 / cnv.canvas.width, 320.0 / cnv.canvas.height);
-                  iW = 240;
-                  iH = 320;
+                  iW = cnv.canvas.width;
+                  iH = cnv.canvas.height;
                   target = new Image();
                   target.src = "images/Ball.png";
                   xPos = (iW - target.width) / 2;
